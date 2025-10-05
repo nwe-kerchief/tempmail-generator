@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  tempmail:
+    build: .
+    container_name: tempmail
+    restart: always
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./data:/app/data
+      - /var/mail:/var/mail
+    environment:
+      - DOMAIN=yourdomain.com
+      - FLASK_ENV=production
+    networks:
+      - tempmail-network
+
+  nginx:
+    image: nginx:alpine
+    container_name: tempmail-nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - /etc/letsencrypt:/etc/letsencrypt
+    depends_on:
+      - tempmail
+    networks:
+      - tempmail-network
+
+networks:
+  tempmail-network:
+    driver: bridge
