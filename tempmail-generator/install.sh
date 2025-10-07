@@ -16,13 +16,6 @@ echo "  Temp Mail Generator - Auto Installation"
 echo "================================================"
 echo ""
 
-# Check if running as root
-if [[ $EUID -eq 0 ]]; then
-    echo -e "${RED}This script should NOT be run as root${NC}"
-    echo "Please run as a normal user with sudo privileges"
-    exit 1
-fi
-
 # Get domain from user
 echo -e "${YELLOW}Enter your domain name (e.g., tempmail.example.com):${NC}"
 read -r DOMAIN
@@ -223,3 +216,4 @@ echo "4. Update frontend domain:"
 echo "   Edit frontend/index.html and change API URL to: https://$DOMAIN"
 echo ""
 echo "================================================"
+
