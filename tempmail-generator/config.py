@@ -1,6 +1,6 @@
 # Configuration file for Temp Mail
 # Copy this to config.py and update with your settings
-
+SECRET_KEY = os.urandom(24).hex()
 # Your domain name (will be auto-configured by install.sh)
 DOMAIN = 'yourdomain.com'
 
@@ -35,6 +35,7 @@ PORT = 5000
 
 # Gunicorn settings (workers will be auto-calculated by install.sh)
 WORKERS = 4
+
 
 
 
